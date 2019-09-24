@@ -1,0 +1,12 @@
+figure img {
+  width: 100%; }
+
+figure {
+  position: relative; }
+
+.image-upload-container {
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+/*# sourceMappingURL=image.component.css.map */

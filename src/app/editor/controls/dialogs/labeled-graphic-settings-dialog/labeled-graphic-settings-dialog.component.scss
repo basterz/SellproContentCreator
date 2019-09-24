@@ -1,0 +1,41 @@
+@import "../../../../../scss/style";
+
+.layer-boundries {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+
+
+  .labeled-graphic-background-image {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+  }
+}
+
+.labeled-graphic-layer-dot.selected {
+  mat-icon {
+    color: mat-color($sellpro-accent, 900, 0.8);
+    border-radius: 50%;
+    background-color: mat-color($sellpro-primary, 50);
+  }
+}
+
+.labeled-graphic-layer-dot {
+  margin-top: -20px;
+  margin-left: -20px;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+
+
+  mat-icon {
+    color: mat-color($sellpro-primary, 50);
+    border-radius: 50%;
+    background-color: mat-color($sellpro-accent, 900, 0.8);
+  }
+}

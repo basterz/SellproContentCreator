@@ -1,0 +1,21 @@
+<figure fxLayout="column">
+  <ng-container *ngFor="let layer of viewModel.layers">
+
+    <div
+         *ngIf="layer.type == ControlLayerType.IMAGE"
+         class="overlay-image-container"
+         [ngStyle]="  {'background-image' : 'url(' + (layer.fileUrl != null ? layer.fileUrl : '') + ')'} ">
+
+      <div class="background-primary image-upload-container" *ngIf="layer.type == ControlLayerType.IMAGE">
+        <button (click)="fileInput.click()" class="color-white" mat-icon-button>
+          <mat-icon>attachment</mat-icon>
+          <input accept="image/*" #fileInput (change)="onFileSelected($event.target.files, layer)" hidden type="file">
+        </button>
+      </div>
+    </div>
+
+    <ckeditor class="text-over-image" *ngIf="layer.type == ControlLayerType.TEXT" [editor]="Editor" [config]="editorConfig"
+              [(ngModel)]="layer.content"></ckeditor>
+  </ng-container>
+</figure>
+

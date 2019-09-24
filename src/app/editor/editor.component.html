@@ -1,0 +1,170 @@
+<div class="content"
+     fxLayout="column"
+     fxLayout.xs="column"
+     fxFlexFill>
+  <div fxFlex class="elevation-bottom">
+    <mat-toolbar color="accent">
+      <div fxLayout="row" fxFlexFill>
+        <div fxFlex="284px" fxLayoutAlign="flex center">
+          <div fxFlex="grow">
+            <section class="mat-typography">
+              <h1>Content Creator</h1>
+            </section>
+          </div>
+          <div fxFlex>
+            <button type="button" matTooltip="Toggle Side Navigation" mat-icon-button (click)="leftDrawer.toggle()"
+                    color="white">
+              <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div fxFlex="grow" fxLayoutAlign="flex center">Course title goes here</div>
+        <div fxFlex fxLayoutAlign="flex center">
+          <button matTooltip="Preview Content" mat-raised-button color="primary">PREVIEW</button>
+          <button type="button" matTooltip="Undo Changes" mat-icon-button>
+            <mat-icon>undo</mat-icon>
+          </button>
+          <button type="button" matTooltip="Redo Cnanges" mat-icon-button>
+            <mat-icon>redo</mat-icon>
+          </button>
+          <button type="button" matTooltip="General Content Settings" mat-icon-button color="white"
+                  (click)="rightDrawer.toggle()">
+            <mat-icon>settings</mat-icon>
+          </button>
+
+        </div>
+      </div>
+
+    </mat-toolbar>
+  </div>
+
+  <mat-sidenav-container fxFlex="grow" class="example-container" [hasBackdrop]="false" cdkDropListGroup>
+    <mat-sidenav #leftDrawer mode="over" opened role="navigation" class="navigation">
+      <section class="mat-typography">
+        <h2>All Elements</h2>
+      </section>
+      <mat-grid-list cols="2"
+                     rowHeight="1:1"
+                     gutterSize="20px"
+                     cdkDropList
+                     cdkDropListSortingDisabled="true"
+                     [cdkDropListData]="viewModel.controls"
+                     cdkDropListConnectedTo="viewModel.selectedControls">
+        <mat-grid-tile class="background-primary menu-control-tile" *ngFor="let control of viewModel.controls" cdkDrag
+                       [cdkDragData]="control">
+          <img [src]="control.icon">
+          <div *cdkDragPreview class="preview-container">
+            <app-dynamic-preview-control [menuItem]="control"></app-dynamic-preview-control>
+          </div>
+          <div class="custom-placeholder" *cdkDragPlaceholder></div>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+    </mat-sidenav>
+    <mat-sidenav #rightDrawer mode="over" position="end" role="navigation" class="navigation" [disableClose]="true">
+       <app-dynamic-settings-control #rightNav [menuItem]="viewModel.selectedControl != null ? viewModel.selectedControl : null"></app-dynamic-settings-control>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div fxLayout="column">
+        <div fxFlex>
+          <div fxLayout="row"
+               fxLayoutAlign="center">
+            <div fxFlex="1040px"
+                 fxFlex.lg="1040px"
+                 fxFlex.md="720px"
+                 fxFlex.sm="480px"
+                 fxFlex.xs="320px"
+                >
+              <div
+                class="editor-list"
+                cdkDropList
+                (cdkDropListDropped)="drop($event)"
+                [style.background]=" viewModel.selectedControls.length == 0 ? 'white' : 'transparent'"
+                [cdkDropListData]="viewModel.selectedControls">
+                <div
+                  [@items]
+                  class="editor-box"
+                  [style.background]="control.viewModel.background"
+                  [style.paddingTop.px]="control.viewModel.spaceTop"
+                  [style.paddingLeft.px]="control.viewModel.spaceLeft"
+                  [style.paddingBottom.px]="control.viewModel.spaceBottom"
+                  [style.paddingRight.px]="control.viewModel.spaceRight"
+                  fxLayoutAlign="stretch"
+                  fxFlexAlign="stretch stretch"
+                  *ngFor="let control of viewModel.selectedControls"
+                  cdkDrag
+                  [cdkDragData]="control">
+
+                  <div class="item-settings background-primary">
+
+                    <button
+                      *ngIf="control.controlType == controlLayerType.LABELED_GRAPHIC"
+                      (click)="openSettingsDialog(control)"
+                      class="color-white"
+                      mat-icon-button>
+                      <mat-icon>settings</mat-icon>
+                    </button>
+
+                    <button mat-icon-button
+                            aria-label="Example icon-button with a heart icon"
+                            class="color-white button-draggable"
+                            cdkDragHandle>
+                      <mat-icon>drag_handle</mat-icon>
+                    </button>
+
+                    <button
+                      (click)="select(control)"
+                      class="color-white"
+                      mat-icon-button>
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button
+                      (click)="copy(control)"
+                      class="color-white"
+                      mat-icon-button aria-label="Example icon-button with a heart icon">
+                      <mat-icon>file_copy</mat-icon>
+                    </button>
+                    <button
+                      (click)="delete(control)"
+                      class="color-white"
+                      mat-icon-button aria-label="Example icon-button with a heart icon">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+
+                  </div>
+                  <div class="custom-placeholder" *cdkDragPlaceholder></div>
+                  <app-dynamic-control fxFlex [menuItem]="control"></app-dynamic-control>
+                </div>
+
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+
+        <div fxLayout="row"
+             class="bottomControls"
+             fxLayoutAlign="center">
+          <div fxFlex="1040px"
+               fxFlex.lg="1040px"
+               fxFlex.md="720px"
+               fxFlex.sm="480px"
+               fxFlex.xs="320px">
+            <mat-grid-list cols="7"
+                           rowHeight="100px"
+                           gutterSize="20px">
+              <mat-grid-tile class="background-primary menu-control-tile" *ngFor="let control of viewModel.controls" (click)="add(control)" >
+                <figure><img [src]="control.icon"></figure>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </div>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+
+</div>

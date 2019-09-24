@@ -1,0 +1,15 @@
+<div fxLayout="row" fxFlexAlign="center">
+  <ng-container *ngFor="let layer of viewModel.layers">
+    <figure fxFlex *ngIf="layer.type == ControlLayerType.IMAGE">
+      <div class="background-primary image-upload-container">
+        <button (click)="fileInput.click()" class="color-white" mat-icon-button>
+          <mat-icon>attachment</mat-icon>
+          <input accept="image/*"  #fileInput (change)="onFileSelected($event.target.files, layer)" hidden type="file">
+        </button>
+      </div>
+      <img class="labeled-graphic-background-image" [src]="layer.fileUrl != null ? (layer.fileUrl | safe: 'url') : '' " />
+    </figure>
+  </ng-container>
+</div>
+
+

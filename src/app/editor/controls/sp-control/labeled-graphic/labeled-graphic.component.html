@@ -1,0 +1,16 @@
+<figure class="labeled-graphic-layer">
+<img class="labeled-graphic-background-image" [src]="viewModel.layers[0].fileUrl != null ? (viewModel.layers[0].fileUrl | safe: 'url') : '' " />
+
+
+<!--<div #container class="labeled-graphic-layer"  fxFlexFill [ngStyle]="{ 'background-image': 'url(' + viewModel.layers[0].fileUrl + ')'}">-->
+<ng-container *ngFor="let layer of viewModel.layers">
+
+    <div class="labeled-graphic-layer-dot" *ngIf="layer.type == ControlLayerType.LABELED_GRAPHIC_DOT" [style.top]="layer.y + '%'" [style.left]="layer.x + '%'">
+      <button fxFlex="center" mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+        <mat-icon class="pulse" color="white">add_circle</mat-icon>
+      </button>
+    </div>
+
+</ng-container>
+<!--</div>-->
+</figure>

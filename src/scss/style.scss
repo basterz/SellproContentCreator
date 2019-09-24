@@ -1,0 +1,143 @@
+@import '~@angular/material/theming';
+@import './variables';
+@import './mixins';
+
+//@import "~@angular/material/prebuilt-themes/purple-green.css";
+
+
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+
+
+$sp-gray: (
+  50 : #bdbdbd,
+  100 : #969696,
+  200 : #7a7a7a,
+  300 : #575757,
+  400 : #474747,
+  500 : #383838,
+  600 : #292929,
+  700 : #191919,
+  800 : #0a0a0a,
+  900 : #000000,
+  A100 : #cda2a2,
+  A200 : #a96060,
+  A400 : #5e4545,
+  A700 : #484141,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #ffffff,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$sp-pink: (
+  50 : #ffffff,
+  100 : #facada,
+  200 : #f597b7,
+  300 : #ee568a,
+  400 : #ec3a76,
+  500 : #e91e63,
+  600 : #d41556,
+  700 : #b8124a,
+  800 : #9c0f3f,
+  900 : #800d34,
+  A100 : #ffffff,
+  A200 : #ffa1c1,
+  A400 : #fc3e7e,
+  A700 : #f13071,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$sellpro-primary: mat-palette($sp-pink);
+$sellpro-accent:  mat-palette($sp-gray);
+$sellpro-warn:    mat-palette($mat-deep-orange);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$candy-app-theme: mat-light-theme($sellpro-primary, $sellpro-accent, $mat-red);
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($candy-app-theme);
+html {
+  scroll-behavior: smooth;
+}
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
+
+}
+
+.background-primary {
+  background-color: mat-color($sellpro-primary);
+}
+
+.background-accent {
+  background-color: mat-color($sellpro-accent);
+}
+.color-primary {
+  color: mat-color($sellpro-primary);
+}
+
+.color-accent {
+  color: mat-color($sellpro-accent);
+}
+.color-white {
+  color: mat-color($sellpro-primary, 50);
+}
+
+
+.preview-container {
+  width: 347px!important;
+  height: 159px!important;
+
+  background-color: mat-color($sellpro-primary, 50);
+  .preview-header {
+    font-size: 14px;
+  }
+  .preview-paragraph {
+    font-size: 11px;
+  }
+}
+
+figure {
+  margin: 0;
+}
+.example-full-width {
+  width: 60px;
+}
+

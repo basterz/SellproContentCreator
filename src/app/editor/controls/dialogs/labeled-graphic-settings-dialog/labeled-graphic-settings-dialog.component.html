@@ -1,0 +1,85 @@
+<div fxLayout="column" fxFlexFill>
+  <div fxFlex>
+    <div fxLayout="row">
+      <h1 style="margin: 0;" fxLayoutAlign="left center" fxFlex="grow" mat-dialog-title>Labeled Graphic</h1>
+      <button (click)="onNoClick()" fxFlex mat-icon-button fxLayoutAlign="center">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+  </div>
+  <div mat-dialog-content fxFlex="grow">
+    <div fxFlexFill fxLayout="row">
+<!--      <div fxFlexFill fxFlex="400px">-->
+        <mat-accordion fxFlex="400px" style="margin-top: 1em;">
+          <ng-container *ngFor="let layer of data.layers">
+            <mat-card
+              *ngIf="layer.type == ControlLayerType.LABELED_GRAPHIC">
+              <mat-card-header>
+                <mat-card-title>General Settings</mat-card-title>
+              </mat-card-header>
+              <mat-card-content #dropbox>
+                <input-file accept="image/*" (files)="fileChanged($event)" #input1  [dropbox]="dropbox"></input-file>
+              </mat-card-content>
+            </mat-card>
+            <mat-expansion-panel
+              *ngIf="layer.type == ControlLayerType.LABELED_GRAPHIC_DOT"
+              (opened)="dotPanelOpen(layer)"
+
+              [expanded]="layer.selected">
+              <mat-expansion-panel-header fxFlexAlign="center">
+                <mat-panel-title fxFlexAlign="center">
+                  {{layer.title}}
+                </mat-panel-title>
+                <button type="button" matTooltip="Remove dot" mat-icon-button color="white"
+                        (click)="delete(layer)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </mat-expansion-panel-header>
+
+              <mat-form-field>
+                <input matInput placeholder="Title" [(ngModel)]="layer.title">
+              </mat-form-field>
+
+              <mat-form-field>
+                <textarea matInput placeholder="Description" [(ngModel)]="layer.content"></textarea>
+              </mat-form-field>
+
+            </mat-expansion-panel>
+          </ng-container>
+
+        </mat-accordion>
+<!--      </div>-->
+      <div fxFlex="grow">
+        <figure class="labeled-graphic-layer">
+          <div #container class="layer-boundries" (click)="onPointAdd($event)">
+            <img class="labeled-graphic-background-image" [src]="data.layers[0].fileUrl | safe: 'url'"/>
+            <ng-container *ngFor="let layer of data.layers">
+
+              <div class="labeled-graphic-layer-dot {{layer.selected == true ? 'selected' : ''}}"
+                   cdkDrag
+                   (cdkDragStarted)="onDragStart(layer)"
+                   (cdkDragEnded)="onDragEnd(layer,$event)"
+                   cdkDragBoundary=".layer-boundries"
+                   *ngIf="layer.type == ControlLayerType.LABELED_GRAPHIC_DOT"
+                   (click)="onDotClick(layer, $event)"
+                   [style.top]="layer.y + '%'" [style.left]="layer.x + '%'">
+                <button fxFlex="center" mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+                  <mat-icon class="pulse" color="white">add_circle</mat-icon>
+                </button>
+              </div>
+
+            </ng-container>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div mat-dialog-content>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+</div>
+</div>-->

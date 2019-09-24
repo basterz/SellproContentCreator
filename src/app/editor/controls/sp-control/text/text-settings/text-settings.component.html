@@ -1,0 +1,35 @@
+<color-sketch [color]="viewModel.background != null ? viewModel.background : '#fff' "
+              (onChangeComplete)="changeComplete($event)"></color-sketch>
+<table cellspacing="0">
+  <tr>
+    <td>
+      <mat-form-field class="example-full-width">
+        <input type="number" min="0" max="50" matInput placeholder="top" [(ngModel)]="viewModel.spaceTop">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field class="example-full-width">
+        <input type="number" min="0" max="50" matInput placeholder="left" [(ngModel)]="viewModel.spaceLeft">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field class="example-full-width">
+        <input type="number" min="0" max="50" matInput placeholder="bottom" [(ngModel)]="viewModel.spaceBottom">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field class="example-full-width">
+        <input type="number" min="0" max="50" matInput placeholder="right" [(ngModel)]="viewModel.spaceRight">
+      </mat-form-field>
+    </td>
+  </tr>
+</table>
+<mat-form-field>
+  <mat-label>Text Columns</mat-label>
+  <mat-select [(ngModel)]="viewModel.textView" [(value)]="viewModel.textView"
+              (selectionChange)="OnTextViewChanged($event)">
+    <mat-option [value]="TextViewColumn.SINGLE_COLUMN">Single Column</mat-option>
+    <mat-option [value]="TextViewColumn.DOUBLE_COLUMN">Double Column</mat-option>
+    <mat-option [value]="TextViewColumn.DOUBLE_COLUMN">Double Column</mat-option>
+  </mat-select>
+</mat-form-field>

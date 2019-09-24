@@ -1,0 +1,4 @@
+<ng-container *ngFor="let layer of viewModel.layers">
+  <div fxFlex *ngIf="layer.type == ControlLayerType.PDF"> todo create pdf control </div>
+  <ckeditor fxFlex *ngIf="layer.type == ControlLayerType.TEXT"  [editor]="Editor" [(ngModel)]="layer.content"></ckeditor>
+</ng-container>

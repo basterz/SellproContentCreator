@@ -1,0 +1,26 @@
+<color-sketch [color]="viewModel.background != null ? viewModel.background : '#fff' "
+              (onChangeComplete)="changeComplete($event)"></color-sketch>
+<table cellspacing="0">
+  <tr>
+    <td>
+      <mat-form-field class="example-full-width">
+        <input type="number" min="0" max="50" matInput placeholder="top" [(ngModel)]="viewModel.spaceTop">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field class="example-full-width">
+        <input type="number" min="0" max="50" matInput placeholder="left" [(ngModel)]="viewModel.spaceLeft">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field class="example-full-width">
+        <input type="number" min="0" max="50" matInput placeholder="bottom" [(ngModel)]="viewModel.spaceBottom">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field class="example-full-width">
+        <input type="number" min="0" max="50" matInput placeholder="right" [(ngModel)]="viewModel.spaceRight">
+      </mat-form-field>
+    </td>
+  </tr>
+</table>
