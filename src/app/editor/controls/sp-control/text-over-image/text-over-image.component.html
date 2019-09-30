@@ -1,4 +1,4 @@
-<figure fxLayout="column" class="background-overlay">
+<figure fxLayout="column" fxLayoutAlign="center" class="background-overlay">
 
   <ng-container *ngFor="let layer of viewModel.layers">
 
@@ -14,7 +14,6 @@
         </button>
       </div>
     </div>
-
     <ckeditor class="text-over-image" *ngIf="layer.type == ControlLayerType.TEXT" [editor]="Editor" [config]="editorConfig"
               [(ngModel)]="layer.content"></ckeditor>
   </ng-container>

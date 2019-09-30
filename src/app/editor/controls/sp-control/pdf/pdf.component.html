@@ -1,6 +1,4 @@
-
-
-  <ng-container *ngFor="let layer of viewModel.layers">
+<ng-container *ngFor="let layer of viewModel.layers">
   <div fxLayout="row" class="pdf-container" *ngIf="layer.type == ControlLayerType.PDF">
     <div class="background-primary image-upload-container">
       <button (click)="fileInput.click()" class="color-white" mat-icon-button>
@@ -8,12 +6,12 @@
         <input accept="application/pdf" #fileInput (change)="onFileSelected($event.target.files, layer)" hidden
                type="file">
       </button>
-
     </div>
     <div fxFlex fxLayoutAlign="center center">
-      <div *ngIf="layer.fileUrl == null">No file selected.</div>
-
-      <a (click)="DownloadFile(layer.fileUrl)"><img *ngIf="layer.fileUrl != null" src="assets/icons/pdf.png"/></a>
+      <div *ngIf="layer.fileUrl == null">No PDF file selected.</div>
+      <a target="_blank" [href]="layer.fileUrl | safe : 'url'">
+        <img *ngIf="layer.fileUrl != null" src="assets/icons/pdf.png"/>
+      </a>
     </div>
   </div>
-  </ng-container>
+</ng-container>

@@ -17,7 +17,10 @@
 .menu-control-tile {
   border: 1px inset mat-color($sellpro-primary, 900);
   box-sizing: border-box;
+}
 
+.mat-drawer .menu-control-tile:hover {
+    cursor: move;
 }
 
 .elevation-bottom {
@@ -115,4 +118,7 @@
 
 .bottomControls {
   margin-bottom: 40px;
+  .menu-control-tile:hover {
+    cursor: pointer;
+  }
 }
