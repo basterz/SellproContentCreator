@@ -26,12 +26,4 @@
     </td>
   </tr>
 </table>
-<mat-form-field>
-  <mat-label>Image Position</mat-label>
-  <mat-select [(ngModel)]="viewModel.selectedPosition" [(value)]="viewModel.selectedPosition"
-              (selectionChange)="ImagePositionChanged($event)">
-    <mat-option [value]="ControlLayerPosition.LEFT">Left</mat-option>
-    <mat-option [value]="ControlLayerPosition.RIGHT">Right</mat-option>
-  </mat-select>
-</mat-form-field>
 

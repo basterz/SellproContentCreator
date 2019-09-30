@@ -8,6 +8,7 @@ import {ControlLayer} from '../control-layer';
   templateUrl: './text-over-image.component.html',
   styleUrls: ['./text-over-image.component.scss']
 })
+
 export class TextOverImageComponent extends ControlComponent implements OnInit {
 
   viewModel: TextOverImageViewModel;
@@ -21,13 +22,9 @@ export class TextOverImageComponent extends ControlComponent implements OnInit {
 
   }
 
-  onChange($event: ChangeEvent) {
-    console.log(this.Editor.getData());
-  }
-
   onFileSelected(files: FileList, layer: ControlLayer) {
     if (files != null) {
-      layer.fileUrl = URL.createObjectURL(files[0]);;
+      layer.fileUrl = URL.createObjectURL(files[0]);
     }
   }
 }

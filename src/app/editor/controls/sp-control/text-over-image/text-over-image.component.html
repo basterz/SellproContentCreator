@@ -1,12 +1,13 @@
-<figure fxLayout="column">
+<figure fxLayout="column" class="background-overlay">
+
   <ng-container *ngFor="let layer of viewModel.layers">
 
     <div
          *ngIf="layer.type == ControlLayerType.IMAGE"
          class="overlay-image-container"
          [ngStyle]="  {'background-image' : 'url(' + (layer.fileUrl != null ? layer.fileUrl : '') + ')'} ">
-
-      <div class="background-primary image-upload-container" *ngIf="layer.type == ControlLayerType.IMAGE">
+      <div class="overlay-mask"></div>
+      <div class="image-upload-container background-primary">
         <button (click)="fileInput.click()" class="color-white" mat-icon-button>
           <mat-icon>attachment</mat-icon>
           <input accept="image/*" #fileInput (change)="onFileSelected($event.target.files, layer)" hidden type="file">

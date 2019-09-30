@@ -16,7 +16,7 @@ export class TextOverImageViewModel extends ControlViewModel {
     });
 
     const textLayer = ControlLayerFactory.Text();
-    textLayer.content = '<h2>Title goes here</h2>';
+    textLayer.content = '<h2><span style="color:hsl(0,0%,100%);">Title goes here</span></h2>';
 
     this.layers.push(imageLayer);
     this.layers.push(textLayer);

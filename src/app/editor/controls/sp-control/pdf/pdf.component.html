@@ -1,4 +1,19 @@
-<ng-container *ngFor="let layer of viewModel.layers">
-  <div fxFlex *ngIf="layer.type == ControlLayerType.PDF"> todo create pdf control </div>
-  <ckeditor fxFlex *ngIf="layer.type == ControlLayerType.TEXT"  [editor]="Editor" [(ngModel)]="layer.content"></ckeditor>
-</ng-container>
+
+
+  <ng-container *ngFor="let layer of viewModel.layers">
+  <div fxLayout="row" class="pdf-container" *ngIf="layer.type == ControlLayerType.PDF">
+    <div class="background-primary image-upload-container">
+      <button (click)="fileInput.click()" class="color-white" mat-icon-button>
+        <mat-icon>attachment</mat-icon>
+        <input accept="application/pdf" #fileInput (change)="onFileSelected($event.target.files, layer)" hidden
+               type="file">
+      </button>
+
+    </div>
+    <div fxFlex fxLayoutAlign="center center">
+      <div *ngIf="layer.fileUrl == null">No file selected.</div>
+
+      <a (click)="DownloadFile(layer.fileUrl)"><img *ngIf="layer.fileUrl != null" src="assets/icons/pdf.png"/></a>
+    </div>
+  </div>
+  </ng-container>

@@ -34,10 +34,10 @@ export class EditorComponentViewModel {
     this.selectedControls.push(new ImageItem());
     this.selectedControls.push(new ImageTextItem());
     this.selectedControls.push(new TextOverImageItem());
-    // this.selectedControls.push(new LabeledGraphicItem());
-    // this.selectedControls.push(new TextItem());
-    // this.selectedControls.push(new ImageItem());
-    // this.selectedControls.push(new ImageItem());
+    this.selectedControls.push(new PdfItem());
+    this.selectedControls.push(new LabeledGraphicItem());
+    this.selectedControls.push(new TextItem());
+    this.selectedControls.push(new TwoColumnTextItem());
   }
 
   delete(control: IMenuItem<ControlComponent, SettingsComponent, PreviewComponent, ControlViewModel>) {
