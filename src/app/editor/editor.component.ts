@@ -150,7 +150,6 @@ export class EditorComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if (result != null) {
         if (this.rightDrawer.opened) {
           this.rightDrawer.toggle();
