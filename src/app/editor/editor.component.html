@@ -22,17 +22,6 @@
         <div fxFlex="grow" fxLayoutAlign="flex center">Course title goes here</div>
         <div fxFlex fxLayoutAlign="flex center">
           <button matTooltip="Preview Content" mat-raised-button color="primary">PREVIEW</button>
-          <button type="button" matTooltip="Undo Changes" mat-icon-button>
-            <mat-icon>undo</mat-icon>
-          </button>
-          <button type="button" matTooltip="Redo Cnanges" mat-icon-button>
-            <mat-icon>redo</mat-icon>
-          </button>
-          <button type="button" matTooltip="General Content Settings" mat-icon-button color="white"
-                  (click)="rightDrawer.toggle()">
-            <mat-icon>settings</mat-icon>
-          </button>
-
         </div>
       </div>
 
@@ -52,6 +41,7 @@
                      [cdkDropListData]="viewModel.controls"
                      cdkDropListConnectedTo="viewModel.selectedControls">
         <mat-grid-tile class="background-primary menu-control-tile" *ngFor="let control of viewModel.controls" cdkDrag
+                       matTooltip="{{control.name}}"
                        [cdkDragData]="control">
           <img [src]="control.icon">
           <div *cdkDragPreview class="preview-container">
@@ -153,10 +143,13 @@
                fxFlex.md="720px"
                fxFlex.sm="480px"
                fxFlex.xs="320px">
+            <section class="mat-typography">
+              <h2>All Elements</h2>
+            </section>
             <mat-grid-list cols="7"
                            rowHeight="100px"
                            gutterSize="20px">
-              <mat-grid-tile class="background-primary menu-control-tile" *ngFor="let control of viewModel.controls" (click)="add(control)" >
+              <mat-grid-tile matTooltip="{{control.name}}" class="background-primary menu-control-tile" *ngFor="let control of viewModel.controls" (click)="add(control)" >
                 <figure><img [src]="control.icon"></figure>
               </mat-grid-tile>
             </mat-grid-list>

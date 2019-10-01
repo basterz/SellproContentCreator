@@ -14,6 +14,7 @@ import {MatDialog, MatSidenav} from '@angular/material';
 import {LabeledGraphicSettingsDialogComponent} from './controls/dialogs/labeled-graphic-settings-dialog/labeled-graphic-settings-dialog.component';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {DynamicSettingsControlComponent} from './controls/dynamic-settings-control/dynamic-settings-control.component';
+import {DeleteItemDialogComponent} from './controls/dialogs/delete-item-dialog/delete-item-dialog.component';
 
 
 @Component({
@@ -120,11 +121,12 @@ export class EditorComponent implements OnInit {
   }
 
   delete(control: IMenuItem<ControlComponent, SettingsComponent, PreviewComponent, ControlViewModel>) {
-    if (this.rightDrawer.opened) {
-      this.rightDrawer.toggle();
-    }
-    this.rightNav.clear();
-    this.viewModel.delete(control);
+    // if (this.rightDrawer.opened) {
+    //   this.rightDrawer.toggle();
+    // }
+    // this.rightNav.clear();
+    // this.viewModel.delete(control);
+    this.openDeleteDialog(control);
   }
 
   copy(control: IMenuItem<ControlComponent, SettingsComponent, PreviewComponent, ControlViewModel>) {
@@ -140,10 +142,22 @@ export class EditorComponent implements OnInit {
       maxHeight: '100vh',
       data: control.viewModel
     });
+  }
+  openDeleteDialog(control: IMenuItem<ControlComponent, SettingsComponent, PreviewComponent, ControlViewModel>): void {
+    const dialogRef = this.dialog.open(DeleteItemDialogComponent, {
+      width: '250px',
+      data: control
+    });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    //   this.animal = result;
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result != null) {
+        if (this.rightDrawer.opened) {
+          this.rightDrawer.toggle();
+        }
+        this.rightNav.clear();
+        this.viewModel.delete(control);
+      }
+    });
   }
 }

@@ -13,14 +13,19 @@
   padding: 20px;
 
 }
-
 .menu-control-tile {
   border: 1px inset mat-color($sellpro-primary, 900);
   box-sizing: border-box;
-}
 
+  transition: background-color 0.3s ease-out;
+
+}
+.menu-control-tile:hover {
+    background-color: mat-color($sellpro-accent, 500);
+}
 .mat-drawer .menu-control-tile:hover {
-    cursor: move;
+
+   cursor: move;
 }
 
 .elevation-bottom {

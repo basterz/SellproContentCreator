@@ -56,6 +56,7 @@ import {TextSettingsComponent} from './controls/sp-control/text/text-settings/te
 import {ImageTextComponent} from './controls/sp-control/image-text/image-text.component';
 import {TextOverImageComponent} from './controls/sp-control/text-over-image/text-over-image.component';
 import {TwoColumnTextComponent} from './controls/sp-control/two-column-text/two-column-text.component';
+import { DeleteItemDialogComponent } from './controls/dialogs/delete-item-dialog/delete-item-dialog.component';
 
 @NgModule({
   imports: [
@@ -114,7 +115,8 @@ import {TwoColumnTextComponent} from './controls/sp-control/two-column-text/two-
     TextPreviewComponent,
     PdfPreviewComponent,
     LabeledGraphicPreviewComponent,
-    LabeledGraphicSettingsDialogComponent
+    LabeledGraphicSettingsDialogComponent,
+    DeleteItemDialogComponent
   ],
   declarations: [
     CoreComponent,
@@ -150,7 +152,8 @@ import {TwoColumnTextComponent} from './controls/sp-control/two-column-text/two-
     DynamicSettingsControlComponent,
     DynamicPreviewControlComponent,
     SafePipe,
-    LabeledGraphicSettingsDialogComponent
+    LabeledGraphicSettingsDialogComponent,
+    DeleteItemDialogComponent
   ],
 })
 export class EditorModule { }
